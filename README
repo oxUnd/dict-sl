@@ -1,5 +1,5 @@
 Stardict Client
-===============
+==============
 
 A simple, suckless Stardict dictionary lookup client written in pure C.
 
@@ -7,19 +7,26 @@ Features:
 - Reads Stardict .ifo, .idx, and .dict files
 - Performs binary search for fast word lookup
 - Outputs definition to stdout
+- Supports prefix queries to list words
 - Minimal dependencies (only standard C libraries)
 
 Usage:
-    ./stardict <dict_dir> <dict_name> <word>
+    ./dict-sl <dict_dir> <dict_name> <mode> <query>
+    ./dict-sl <mode> <query>  # uses defaults from config.h
+
+Where mode is:
+    --query or -q: list words starting with <query> prefix
+    --word or -w: lookup exact <query> word
 
 Example:
-    ./stardict /usr/share/stardict/dic stardict-english-chinese hello
+    ./dict-sl --word hello
+    ./dict-sl langdao-ec-gb langdao-ec-gb --query hel
 
 Compilation:
-    gcc -o stardict main.c
+    make
 
 Notes:
-- Assumes 32-bit offsets in .idx file
+- Assumes 32-bit offsets in .idx file (ignores idxoffsetbits)
 - Does not handle compressed .idx.gz or .dict.dz files
 - Ignores sametypesequence for simplicity
 - Definitions are assumed to be plain text
