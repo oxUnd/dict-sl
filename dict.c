@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
         mode = argv[1];
         query = argv[2];
     } else {
-        fprintf(stderr, "Usage: %s [--dict_dir <dir> --dict_name <name>] --query <prefix> | --word <word>\n", argv[0]);
+        fprintf(stderr, "Usage: %s [<dict_dir> <dict_name>] --query <prefix> | --word <word>\n", argv[0]);
         return 1;
     }
 
