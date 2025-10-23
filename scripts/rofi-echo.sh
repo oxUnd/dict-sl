@@ -9,7 +9,7 @@ query=$(trim $@)
 dir="$(dirname $0)"
 if [ -n "$query" ]; then
     echo "$query"
-    printf "%s" "$($dir/dict-sl -w $query)"
+    printf "%s" "$(dict-sl -w $query)"
 else
     echo "please enter word..."
 fi

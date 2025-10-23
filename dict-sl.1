@@ -1,0 +1,48 @@
+.TH DICT-SL 1 "October 2025" "dict-sl" "Stardict Client"
+.SH NAME
+dict-sl \- A simple command-line Stardict dictionary lookup client
+.SH SYNOPSIS
+.B dict-sl
+[\fIdict_dir\fR \fIdict_name\fR] \fB--query\fR|\fB-q\fR \fIprefix\fR
+.br
+.B dict-sl
+[\fIdict_dir\fR \fIdict_name\fR] \fB--word\fR|\fB-w\fR \fIword\fR
+.SH DESCRIPTION
+.B dict-sl
+is a minimal Stardict dictionary client written in C. It reads Stardict format dictionary files (.ifo, .idx, .dict) and performs fast lookups using binary search.
+.PP
+In query mode (\fB--query\fR), it lists all words starting with the given prefix, displaying each word followed by a truncated definition (first line, up to 100 characters).
+.PP
+In word mode (\fB--word\fR), it looks up the exact word and prints its full definition.
+.PP
+If \fIdict_dir\fR and \fIdict_name\fR are not provided, it uses the defaults from config.h.
+.SH OPTIONS
+.TP
+.B --query \fIprefix\fR, -q \fIprefix\fR
+List words starting with \fIprefix\fR and show partial definitions.
+.TP
+.B --word \fIword\fR, -w \fIword\fR
+Look up the exact \fIword\fR and display its full definition.
+.SH EXAMPLES
+.TP
+Look up the word "hello" using default dictionary:
+.B dict-sl --word hello
+.TP
+Query words starting with "hel" in a specific dictionary:
+.B dict-sl langdao-ec-gb langdao-ec-gb --query hel
+.SH FILES
+.TP
+.I dict_dir/dict_name.ifo
+Dictionary information file
+.TP
+.I dict_dir/dict_name.idx
+Index file containing word offsets
+.TP
+.I dict_dir/dict_name.dict
+Dictionary data file
+.SH NOTES
+Assumes 32-bit offsets in .idx files. Does not handle compressed files (.idx.gz, .dict.dz). Definitions are treated as plain text.
+.SH SEE ALSO
+stardict(1)
+.SH AUTHOR
+Written by the dict-sl project contributors.
